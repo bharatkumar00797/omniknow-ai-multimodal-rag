@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from collections.abc import Sequence
 from dataclasses import replace
@@ -114,6 +115,28 @@ def cmd_eval(args: argparse.Namespace) -> int:
     return 0 if report.passed else 1
 
 
+def cmd_serve(args: argparse.Namespace) -> int:
+    import uvicorn
+
+    from omniknow.api import create_app
+    from omniknow.api.settings import ApiSettings
+
+    port = args.port or int(os.getenv("PORT") or 8000)
+    settings = ApiSettings.from_env()
+    if args.dev:
+        settings = replace(settings, dev_mode=True)
+    if settings.access_mode == "dev" and args.host not in {"127.0.0.1", "::1", "localhost"}:
+        print("warning: dev mode without API keys is exposed beyond localhost", file=sys.stderr)
+    mode = {
+        "api-key": "API-key auth",
+        "dev": "dev mode (no auth)",
+        "public-demo": "public demo (packaged corpus + mock provider)",
+    }[settings.access_mode]
+    print(f"OmniKnow {__version__} on http://{args.host}:{port} | {mode}", flush=True)
+    uvicorn.run(create_app(settings), host=args.host, port=port, log_level="info")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="omniknow",
@@ -154,6 +177,16 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--provider", choices=["mock", "openai", "groq", "ollama"])
     common(p, principal=False)
     p.set_defaults(func=cmd_eval)
+
+    p = sub.add_parser("serve", help="Start the REST API and web dashboard")
+    p.add_argument(
+        "--host",
+        default=os.getenv("HOST", "127.0.0.1"),
+        help="bind address (default: $HOST or 127.0.0.1)",
+    )
+    p.add_argument("--port", type=int, default=None, help="port (default: $PORT or 8000)")
+    p.add_argument("--dev", action="store_true", help="dev mode: no API key required")
+    p.set_defaults(func=cmd_serve)
     return parser
 
 
