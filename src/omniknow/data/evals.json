@@ -1,0 +1,15 @@
+{
+  "cases": [
+    {"id": "pto-days", "question": "How many days of paid time off do employees get?", "principal": "employee", "expected_docs": ["benefits-overview"], "must_contain": ["25 days"]},
+    {"id": "home-office-stipend", "question": "What is the home office stipend for remote workers?", "principal": "employee", "expected_docs": ["remote-work-policy"], "must_contain": ["600 USD"]},
+    {"id": "sev1-ack", "question": "How quickly must on-call acknowledge a SEV1 page?", "principal": "engineer", "expected_docs": ["incident-runbook"], "must_contain": ["5 minutes"]},
+    {"id": "x200-battery", "question": "What is the battery life of the X200 Courier?", "principal": "guest", "expected_docs": ["x200-datasheet"], "must_contain": ["9 hours"]},
+    {"id": "apac-revenue", "question": "What was Asia Pacific revenue in Q3?", "principal": "finance-analyst", "expected_docs": ["q3-revenue"], "must_contain": ["9.7"]},
+    {"id": "fire-exits", "question": "Where are the emergency exits and assembly point in the Pune office?", "principal": "employee", "expected_docs": ["office-floorplan"], "must_contain": ["north parking lot"]},
+    {"id": "architecture-db", "question": "Which database does the fleet control plane write to?", "principal": "engineer", "expected_docs": ["fleet-architecture"], "must_contain": ["PostgreSQL"]},
+    {"id": "multi-part", "question": "How long is primary caregiver parental leave and what is the X200 payload capacity?", "principal": "employee", "expected_docs": ["benefits-overview", "x200-datasheet"], "must_contain": ["18 weeks", "12 kg"]},
+    {"id": "acl-salary-denied", "question": "What is the salary band for a Staff Engineer?", "principal": "engineer", "expected_docs": [], "expect_abstain": true},
+    {"id": "acl-salary-allowed", "question": "What is the salary band for a Staff Engineer?", "principal": "hr-partner", "expected_docs": ["salary-bands"], "must_contain": ["175000"]},
+    {"id": "out-of-scope", "question": "Who won the 1998 football world cup?", "principal": "employee", "expected_docs": [], "expect_abstain": true}
+  ]
+}

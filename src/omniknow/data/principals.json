@@ -1,0 +1,7 @@
+{
+  "guest": ["public"],
+  "employee": ["all-staff"],
+  "engineer": ["all-staff", "engineering"],
+  "finance-analyst": ["all-staff", "finance"],
+  "hr-partner": ["all-staff", "hr"]
+}

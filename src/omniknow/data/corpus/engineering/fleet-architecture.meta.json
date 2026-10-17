@@ -1,0 +1,6 @@
+{
+  "image": "fleet-architecture.png",
+  "caption": "Fleet control plane architecture diagram",
+  "alt_text": "Architecture diagram: robots connect over MQTT to the edge gateway, which forwards telemetry to the fleet control plane running on Kubernetes. The control plane writes to a PostgreSQL database and a time-series store, and exposes a REST API to the operator console.",
+  "ocr_text": "Robot -> MQTT -> Edge Gateway -> Fleet Control Plane (Kubernetes) -> PostgreSQL / TimescaleDB. Operator Console -> REST API."
+}

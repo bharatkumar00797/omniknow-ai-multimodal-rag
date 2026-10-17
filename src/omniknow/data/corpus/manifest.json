@@ -1,0 +1,14 @@
+{
+  "name": "Northwind Robotics sample knowledge base",
+  "documents": [
+    {"id": "remote-work-policy", "title": "Remote Work Policy", "path": "handbook/remote-work-policy.md", "modality": "text", "acl": ["all-staff"], "tags": ["handbook", "policy"]},
+    {"id": "benefits-overview", "title": "Benefits Overview", "path": "hr/benefits-overview.md", "modality": "text", "acl": ["all-staff"], "tags": ["hr", "benefits"]},
+    {"id": "incident-runbook", "title": "Incident Response Runbook", "path": "engineering/incident-response-runbook.md", "modality": "text", "acl": ["engineering"], "tags": ["engineering", "on-call"]},
+    {"id": "q3-revenue", "title": "Q3 2026 Revenue by Region", "path": "finance/q3-revenue-by-region.csv", "modality": "table", "acl": ["finance"], "tags": ["finance", "revenue"]},
+    {"id": "salary-bands", "title": "Engineering Salary Bands", "path": "hr/salary-bands.csv", "modality": "table", "acl": ["hr"], "tags": ["hr", "compensation"]},
+    {"id": "vendor-faq", "title": "Vendor Onboarding FAQ", "path": "vendors/vendor-onboarding-faq.md", "modality": "text", "acl": ["all-staff"], "tags": ["procurement"]},
+    {"id": "x200-datasheet", "title": "X200 Courier Datasheet", "path": "products/x200-datasheet.pdf", "modality": "pdf", "acl": ["public"], "tags": ["product", "datasheet"]},
+    {"id": "office-floorplan", "title": "Pune Office Floor Plan", "path": "facilities/office-floorplan.meta.json", "modality": "image", "acl": ["all-staff"], "tags": ["facilities", "safety"]},
+    {"id": "fleet-architecture", "title": "Fleet Control Plane Architecture", "path": "engineering/fleet-architecture.meta.json", "modality": "image", "acl": ["engineering"], "tags": ["engineering", "architecture"]}
+  ]
+}
