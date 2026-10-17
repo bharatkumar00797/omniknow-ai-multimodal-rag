@@ -10,7 +10,7 @@ readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "Bharatkumar Chandvani" }]
 requires-python = ">=3.11"
-keywords = ["ai", "llm", "ai-agents", "rag", "multimodal", "enterprise-search", "knowledge-base"]
+keywords = ["ai", "llm", "ai-agents", "rag", "multimodal", "enterprise-search", "knowledge-base", "fastapi"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Programming Language :: Python :: 3",
@@ -25,6 +25,8 @@ dependencies = [
   "pydantic>=2.6",
   "httpx>=0.27",
   "pypdf>=4.0",
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.29",
 ]
 
 [project.optional-dependencies]
