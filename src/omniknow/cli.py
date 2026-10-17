@@ -121,7 +121,10 @@ def cmd_serve(args: argparse.Namespace) -> int:
     from omniknow.api import create_app
     from omniknow.api.settings import ApiSettings
 
-    port = args.port or int(os.getenv("PORT") or 8000)
+    raw_port = os.getenv("PORT") or "8000"
+    if args.port is None and not raw_port.isdigit():
+        raise ValueError(f"PORT must be an integer, got {raw_port!r}")
+    port = args.port or int(raw_port)
     settings = ApiSettings.from_env()
     if args.dev:
         settings = replace(settings, dev_mode=True)

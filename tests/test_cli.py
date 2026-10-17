@@ -59,3 +59,11 @@ def test_errors_exit_2(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["ask", "hi", "--as", "root"]) == 2
     assert "unknown principal" in capsys.readouterr().err
     assert main(["docs", "--corpus", "/nonexistent"]) == 2
+
+
+def test_serve_rejects_non_numeric_port(
+    monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    monkeypatch.setenv("PORT", "abc")
+    assert main(["serve"]) == 2
+    assert "PORT must be an integer" in capsys.readouterr().err
