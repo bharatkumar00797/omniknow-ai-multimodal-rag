@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OmniKnow - multimodal enterprise knowledge agent</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>OmniKnow</h1>
+      <p class="tag">Grounded, cited answers over docs, tables, PDFs and images &mdash; filtered by who is asking.</p>
+    </div>
+    <div class="meta"><span id="mode" class="pill">loading...</span> <a href="/docs">API docs</a></div>
+  </header>
+  <div id="banner" class="banner" hidden role="status">
+    Simulated public demo &mdash; packaged sample corpus and the offline mock provider only.
+  </div>
+  <main>
+    <section class="panel" id="setup">
+      <div class="row">
+        <label>Ask as (principal) <select id="principal"></select></label>
+        <label id="key-wrap" hidden>API key <input id="apikey" type="password" autocomplete="off"></label>
+        <span id="groups" class="hint"></span>
+      </div>
+      <div class="tabs" role="tablist">
+        <button type="button" data-tab="ask" class="active">Ask</button>
+        <button type="button" data-tab="docs">Documents you can see</button>
+        <button type="button" data-tab="evals">Evals</button>
+      </div>
+
+      <div id="tab-ask" class="tab">
+        <label>Question
+          <textarea id="question" rows="3" maxlength="1000" spellcheck="true"
+            placeholder="e.g. How many PTO days do employees get?"></textarea>
+        </label>
+        <div id="examples" class="chip-list" aria-label="Example questions"></div>
+        <div class="row">
+          <button id="ask" type="button">Ask</button>
+          <span id="status" class="status" role="status"></span>
+        </div>
+      </div>
+
+      <div id="tab-docs" class="tab" hidden>
+        <p id="docs-summary" class="hint"></p>
+        <table class="grid">
+          <thead><tr><th>Document</th><th>Modality</th><th>ACL groups</th><th>Chunks</th><th>Tags</th></tr></thead>
+          <tbody id="docs"></tbody>
+        </table>
+      </div>
+
+      <div id="tab-evals" class="tab" hidden>
+        <div class="row">
+          <button id="run-evals" type="button">Run eval suite</button>
+          <span id="eval-status" class="status" role="status"></span>
+        </div>
+        <div id="eval-metrics" class="metrics"></div>
+        <table class="grid">
+          <thead><tr><th>Case</th><th>Result</th><th>Retrieval</th><th>Citations</th><th>Abstain</th><th>ACL leaks</th><th>Answer</th></tr></thead>
+          <tbody id="eval-cases"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="result" hidden>
+      <div class="answer-head">
+        <h2>Answer</h2>
+        <span id="confidence" class="badge"></span>
+        <span id="grounded" class="badge"></span>
+        <span id="provider" class="pill"></span>
+      </div>
+      <p id="answer" class="answer"></p>
+      <div id="subqueries-wrap" hidden>
+        <h3>Sub-queries</h3>
+        <ol id="subqueries" class="subqueries"></ol>
+      </div>
+      <div class="cols">
+        <div>
+          <h3>Sources</h3>
+          <div id="sources"></div>
+        </div>
+        <div>
+          <h3>Security flags</h3>
+          <p class="hint">Retrieved chunks that matched prompt-injection patterns are quarantined: reported here, never used as evidence.</p>
+          <div id="flags"></div>
+        </div>
+      </div>
+      <details>
+        <summary>Agent trace</summary>
+        <ol id="trace" class="trace"></ol>
+      </details>
+    </section>
+  </main>
+  <footer>Open source &middot; MIT &middot; offline mock provider by default</footer>
+</body>
+</html>
